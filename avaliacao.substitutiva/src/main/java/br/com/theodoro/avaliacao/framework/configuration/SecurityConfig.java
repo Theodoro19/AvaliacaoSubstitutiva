@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Bean
     public Cas20ServiceTicketValidator cas20ServiceTicketValidator() {
-    	Cas20ServiceTicketValidator cas20ServiceTicketValidator  = new Cas20ServiceTicketValidator(GetPropertyUtils.getProperty(urlCasServer));
+    	Cas20ServiceTicketValidator cas20ServiceTicketValidator  = new Cas20ServiceTicketValidator(GetPropertyUtils.getProperty(urlCasPushHost));
    
     	return cas20ServiceTicketValidator;
     }
@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Bean
     public CasAuthenticationEntryPoint casAuthenticationEntryPoint() {
         CasAuthenticationEntryPoint casAuthenticationEntryPoint = new CasAuthenticationEntryPoint();
-        casAuthenticationEntryPoint.setLoginUrl(GetPropertyUtils.getProperty(urlCasServer) + "/login");
+        casAuthenticationEntryPoint.setLoginUrl(GetPropertyUtils.getProperty(urlCasPushHost) + "/login");
         casAuthenticationEntryPoint.setServiceProperties(serviceProperties());
         return casAuthenticationEntryPoint;
     }
@@ -90,8 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Bean
     public LogoutFilter requestSingleLogoutFilter() {
-    	LogoutFilter filter = new LogoutFilter(GetPropertyUtils.getProperty(urlCasServer) + "/logout", new SecurityContextLogoutHandler());
-    	filter.setFilterProcessesUrl(GetPropertyUtils.getProperty(urlCasPushHost) + "/logout");
+    	LogoutFilter filter = new LogoutFilter(GetPropertyUtils.getProperty(urlCasPushHost) + "/logout", new SecurityContextLogoutHandler());
     	
     	return filter;
     }
@@ -128,7 +127,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //		.antMatchers("/v1.0/**").permitAll() 
 //		.anyRequest().permitAll()
 		.and()
-		.logout().logoutSuccessUrl(GetPropertyUtils.getProperty(urlCasServer) + "/login");
+		.logout().logoutSuccessUrl(GetPropertyUtils.getProperty(urlCasPushHost) + "/login");
 		
 	}
 }
