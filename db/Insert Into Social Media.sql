@@ -1,0 +1,5 @@
+insert into social_media (user_id, social_profile_id, social_provider, authenticate) values (1, 'raphaeltheodoro', 'Facebook', true)
+insert into social_media (user_id, social_profile_id, social_provider, authenticate) values (1, 'theodoro45', 'PlayStation Network', false)
+insert into social_media (user_id, social_profile_id, social_provider, authenticate) values (1, '@theodoro45', 'Instagram', false)
+insert into social_media (user_id, social_profile_id, social_provider, authenticate) values (1, 'theodoro19', 'Xbox Live', false)
+insert into social_media (user_id, social_profile_id, social_provider, authenticate) values (1, 'theodoro30', 'PlayStation Network',false)
