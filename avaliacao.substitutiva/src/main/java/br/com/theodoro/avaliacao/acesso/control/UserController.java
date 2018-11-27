@@ -19,6 +19,7 @@ import br.com.theodoro.avaliacao.framework.exception.BusinessException;
 @RequestMapping("/user")
 public class UserController {
 	
+	
 	@Autowired
 	private AuthService authService;
 	
