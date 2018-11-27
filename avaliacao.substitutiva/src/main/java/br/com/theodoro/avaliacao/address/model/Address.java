@@ -32,7 +32,7 @@ public class Address extends BaseEntity {
 	private String cep;
 	@Column(name = "address_name")
 	private String endereco;
-
+ 
 	public User getUsuario() {
 		return usuario;
 	}
