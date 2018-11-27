@@ -1,0 +1,5 @@
+insert into states (country_code, state_name) values (1, 'São Paulo')
+insert into states (country_code, state_name) values (2, 'Firenze')
+insert into states (country_code, state_name) values (1, 'Minas Gerais')
+insert into states (country_code, state_name) values (1, 'Bahia')
+insert into states (country_code, state_name) values (1, 'Rio de Janeiro')
