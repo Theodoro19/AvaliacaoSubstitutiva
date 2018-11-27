@@ -1,0 +1,5 @@
+insert into cities (state_id, city_name) values (1,'São Paulo')
+insert into cities (state_id, city_name) values (2,'Scandicci')
+insert into cities (state_id, city_name) values (1,'Rio Preto')
+insert into cities (state_id, city_name) values (1,'São Roque')
+insert into cities (state_id, city_name) values (1,'Santos')
