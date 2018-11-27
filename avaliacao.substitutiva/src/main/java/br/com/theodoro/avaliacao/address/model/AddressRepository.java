@@ -1,5 +1,5 @@
 package br.com.theodoro.avaliacao.address.model;
 
-public class AddressRepository {
+public interface AddressRepository {
 
 }
