@@ -24,67 +24,67 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages={
-		
-})
+@EnableJpaRepositories(basePackages = { "br.com.theodoro.avaliacao.acesso.model",
+		"br.com.theodoro.avaliacao.social.media.model" })
 @PropertySource(value = { "classpath:application.properties" })
 public class JPAConfig {
 	@Autowired
-    private Environment environment;
-	
+	private Environment environment;
+
 	private DataSource ds = null;
- 
+
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-      LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-      em.setDataSource(dataSource());
-      em.setPackagesToScan(new String[] { 
-		      });
- 
-      JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-      em.setJpaVendorAdapter(vendorAdapter);
-      em.setJpaProperties(additionalProperties());
- 
-      return em;
+		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+		em.setDataSource(dataSource());
+		em.setPackagesToScan(new String[] {"br.com.theodoro.avaliacao.acesso.model",
+				"br.com.theodoro.avaliacao.social.media.model" });
+
+		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		em.setJpaVendorAdapter(vendorAdapter);
+		em.setJpaProperties(additionalProperties());
+
+		return em;
 	}
-	 
+
 	@Bean
-	public DataSource dataSource(){
+	public DataSource dataSource() {
 		try {
-			Context initCtx  = new InitialContext();
+			Context initCtx = new InitialContext();
 			ds = (DataSource) initCtx.lookup(environment.getRequiredProperty("jdbc.jndi"));
 			initCtx.close();
-			
+
 			return ds;
-	
+
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
- 
+
 	@Bean
-	public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
-      JpaTransactionManager transactionManager = new JpaTransactionManager();
-      transactionManager.setEntityManagerFactory(emf);
- 
-      return transactionManager;
+	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(emf);
+
+		return transactionManager;
 	}
- 
+
 	@Bean
-	public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
-      return new PersistenceExceptionTranslationPostProcessor();
+	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+		return new PersistenceExceptionTranslationPostProcessor();
 	}
- 
+
 	Properties additionalProperties() {
-      Properties properties = new Properties();
-      if(environment.containsProperty("hibernate.hbm2ddl.auto")){
-    	  properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
-      }
-      properties.setProperty("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
-      properties.setProperty("hibernate.show_sql", environment.getProperty("hibernate.show_sql", "true"));
-      properties.setProperty("hibernate.format_sql", environment.getProperty("hibernate.format_sql", "true"));
-      properties.setProperty("hibernate.generate_statistics", environment.getProperty("hibernate.generate_statistics", "false"));
-      return properties;
-   }
+		Properties properties = new Properties();
+		if (environment.containsProperty("hibernate.hbm2ddl.auto")) {
+			properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
+		}
+		properties.setProperty("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
+		properties.setProperty("hibernate.show_sql", environment.getProperty("hibernate.show_sql", "true"));
+		properties.setProperty("hibernate.format_sql", environment.getProperty("hibernate.format_sql", "true"));
+		properties.setProperty("hibernate.generate_statistics",
+				environment.getProperty("hibernate.generate_statistics", "false"));
+		return properties;
+	}
 }

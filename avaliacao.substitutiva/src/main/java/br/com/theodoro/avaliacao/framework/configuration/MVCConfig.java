@@ -19,43 +19,37 @@ import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages={	
-		
-})
+@ComponentScan(basePackages = { "br.com.theodoro.avaliacao.acesso.control",
+		"br.com.theodoro.avaliacao.social.media.control" })
 public class MVCConfig extends WebMvcConfigurerAdapter {
 
-	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		super.configureViewResolvers(registry);
-		
-		ResourceBundleViewResolver viewResolver  = new ResourceBundleViewResolver();
+
+		ResourceBundleViewResolver viewResolver = new ResourceBundleViewResolver();
 		viewResolver.setBasename("spring/report-views");
-		
+
 		registry.viewResolver(viewResolver);
-		
+
 		InternalResourceViewResolver iViewResolver = new InternalResourceViewResolver();
-		
+
 		registry.viewResolver(iViewResolver);
 	}
-	
+
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-		configurer
-			.mediaType("csv", new MediaType("text", "csv"))
-			.favorParameter(true)
-			.parameterName("format");
+		configurer.mediaType("csv", new MediaType("text", "csv")).favorParameter(true).parameterName("format");
 		super.configureContentNegotiation(configurer);
 	}
-	
-	
+
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		super.configureMessageConverters(converters);
-        converters.add(new MappingJackson2HttpMessageConverter());
-        converters.add(new MappingJackson2XmlHttpMessageConverter());
+		converters.add(new MappingJackson2HttpMessageConverter());
+		converters.add(new MappingJackson2XmlHttpMessageConverter());
 	}
-	
+
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
