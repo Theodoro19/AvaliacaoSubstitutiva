@@ -12,7 +12,7 @@ email_confirmed boolean NOT NULL DEFAULT true,
 create_time timestamp with time zone,
 password_enc character varying(100),
 password_salt character varying(50),
-CONSTRAINT user_pkey PRIMARY KEY (user_id),
+CONSTRAINT user_pkey PRIMARY KEY (user_id)
 )
 WITH (
   OIDS=FALSE
