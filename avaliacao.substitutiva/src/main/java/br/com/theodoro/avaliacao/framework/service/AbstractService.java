@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 
 import javax.transaction.Transactional;
 
-import br.gov.sp.tce.dti.nemesis.pauta.acesso.model.Usuario;
-import br.gov.sp.tce.dti.nemesis.pauta.framework.exception.BusinessException;
-import br.gov.sp.tce.dti.nemesis.pauta.framework.model.Audit;
-import br.gov.sp.tce.dti.nemesis.pauta.framework.model.BaseEntity;
-import br.gov.sp.tce.dti.nemesis.pauta.framework.model.FakeDeleted;
+import br.com.theodoro.avaliacao.acesso.model.User;
+import br.com.theodoro.avaliacao.framework.exception.BusinessException;
+import br.com.theodoro.avaliacao.framework.model.Audit;
+import br.com.theodoro.avaliacao.framework.model.BaseEntity;
+import br.com.theodoro.avaliacao.framework.model.FakeDeleted;
 
 @Transactional(rollbackOn = BusinessException.class)
 public abstract class AbstractService<T extends BaseEntity & Audit<E> & FakeDeleted, E extends BaseEntity> {
@@ -51,7 +51,7 @@ public abstract class AbstractService<T extends BaseEntity & Audit<E> & FakeDele
 		return managed;
 	}
 
-	public T delete(long id, Usuario usuario) throws BusinessException {
+	public T delete(long id, User usuario) throws BusinessException {
 		T managed = ensureExist(id);
 
 		managed.setUsuario(usuario);

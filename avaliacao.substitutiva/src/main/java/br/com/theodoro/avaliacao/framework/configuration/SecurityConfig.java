@@ -20,14 +20,9 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 import org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import br.gov.sp.tce.dti.nemesis.pauta.acesso.service.AuthService;
-import br.gov.sp.tce.dti.nemesis.pauta.util.GetPropertyUtils;
+import br.com.theodoro.avaliacao.acesso.service.AuthService;
+import br.com.theodoro.avaliacao.util.GetPropertyUtils;
 
-/**Classe para objetos do tipo SecurityConfig, onde serao contidos, informacoes e metodos para o mesmo.
-* 
-* @version 1.0
-* 
-*/
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
@@ -35,7 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private AuthService authService;
 	
-	private static final String urlCasServer = "br.gov.sp.tce.dti.nemesis.pauta.cas.cas-server";
 	private static final String urlCasPushHost = "br.gov.sp.tce.dti.nemesis.pauta.cas.push-host";
 	
 	/**
@@ -48,8 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Bean
     public ServiceProperties serviceProperties() {
         ServiceProperties serviceProperties = new ServiceProperties();
-    
-        //serviceProperties.setService(GetPropertyUtils.getProperty("br.gov.sp.tce.dti.nemesis.pauta.cas.push-host") + "/login/cas");
         serviceProperties.setService(GetPropertyUtils.getProperty(urlCasPushHost) + "/j_spring_cas_security_check");
         serviceProperties.setSendRenew(false);
         return serviceProperties;

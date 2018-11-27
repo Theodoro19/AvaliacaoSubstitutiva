@@ -2,7 +2,7 @@ package br.com.theodoro.avaliacao.framework.model;
 
 import java.time.LocalDateTime;
 
-import br.gov.sp.tce.dti.nemesis.pauta.acesso.model.Usuario;
+import br.com.theodoro.avaliacao.acesso.model.User;
 
 public interface Audit<T extends BaseEntity> {
 	T addInsertAudit();
@@ -12,8 +12,8 @@ public interface Audit<T extends BaseEntity> {
 	LocalDateTime getUltimaAlteracao();
 	void setUltimaAlteracao(LocalDateTime ultimaAlteracao);
 	
-	Usuario getUsuario();
-	void setUsuario(Usuario usuario) ;
+	User getUsuario();
+	void setUsuario(User usuario) ;
 	
 	void setDeleted(boolean val);
 }
