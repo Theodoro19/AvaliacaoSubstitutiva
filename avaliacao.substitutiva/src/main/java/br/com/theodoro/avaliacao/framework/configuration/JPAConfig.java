@@ -25,7 +25,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = { "br.com.theodoro.avaliacao.acesso.model",
-		"br.com.theodoro.avaliacao.social.media.model" })
+		"br.com.theodoro.avaliacao.social.media.model", "br.com.theodoro.avaliacao.address.model",
+		"br.com.theodoro.avaliacao.cities.model", "br.com.theodoro.avaliacao.countries.model",
+		"br.com.theodoro.avaliacao.states.model" })
 @PropertySource(value = { "classpath:application.properties" })
 public class JPAConfig {
 	@Autowired
@@ -37,8 +39,10 @@ public class JPAConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] {"br.com.theodoro.avaliacao.acesso.model",
-				"br.com.theodoro.avaliacao.social.media.model" });
+		em.setPackagesToScan(
+				new String[] { "br.com.theodoro.avaliacao.acesso.model", "br.com.theodoro.avaliacao.social.media.model",
+						"br.com.theodoro.avaliacao.address.model", "br.com.theodoro.avaliacao.cities.model",
+						"br.com.theodoro.avaliacao.countries.model", "br.com.theodoro.avaliacao.states.model" });
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);

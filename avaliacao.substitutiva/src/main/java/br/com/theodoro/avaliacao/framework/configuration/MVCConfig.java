@@ -20,7 +20,9 @@ import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "br.com.theodoro.avaliacao.acesso.control",
-		"br.com.theodoro.avaliacao.social.media.control" })
+		"br.com.theodoro.avaliacao.social.media.control", "br.com.theodoro.avaliacao.address.control",
+		"br.com.theodoro.avaliacao.cities.control", "br.com.theodoro.avaliacao.countries.control",
+		"br.com.theodoro.avaliacao.states.control" })
 public class MVCConfig extends WebMvcConfigurerAdapter {
 
 	@Override
